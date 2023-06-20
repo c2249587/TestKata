@@ -1,38 +1,32 @@
 import java.util.Scanner;
 
-public class Calculator{
-    public static void main(String[] args){
+public class Main {
+
+    public static void main(String[] args) {
         Scanner scn = new Scanner(System.in);
-       // while (true)   для бесконечного ввода
-        Main result = new Main();
-        System.out.println("Input:");                   // Запрос ввода
-        String expression = scn.nextLine();           // Ввод выражения
-        String answer = result.calc(expression);        // Метод calc для объекта result
-
-
-        System.out.println("Output:\n" + answer);        // Выводим ответ
+        System.out.println("Input:");                   
+        String expression = scn.nextLine();                  
+        String answer = calc(expression);        
+        System.out.println("Output:\n" + answer);        
     }
-}
+ public static String calc(String input) {              
 
-class Main{
-    public static String calc(String input) {
+        String exception = "throws Exception";      
+        Integer result = 0;                                   
 
-        String exception = "throws Exception";            // Исключение
-        int result = 0;                                   // Считает выражение
-        String[] inputSplit = input.split(" ");      //массив
-        if (inputSplit.length != 3) {
-            return exception;                             // Ловим, если не 3 элемента
+        String[] inputSplit = input.split(" ");      
+
+        if (inputSplit.length != 3) {                                    
+        return exception;                             
         }
         Integer firstNumber = 0;
         Integer secondNumber = 0;
-        try {                                               //если появляется искл...
-            firstNumber = Integer.valueOf(inputSplit[0]);  // возвр целочисленный объект
-            secondNumber = Integer.valueOf(inputSplit[2]);
-        }
-        catch (NumberFormatException e) {                   //... то
-        }
+        try {                                                           
+        firstNumber = Integer.valueOf(inputSplit[0]);  
+        secondNumber = Integer.valueOf(inputSplit[2]);
+        } catch (NumberFormatException e) {                           }
         if ((firstNumber < 1) || (firstNumber > 10) || (secondNumber < 1) || (secondNumber > 10)) {
-            return exception;                                       // Указываем диапазон значений
+            return exception;                                       
         }
 
         String sign = inputSplit[1];
@@ -42,9 +36,9 @@ class Main{
             case "*" -> result = firstNumber * secondNumber;
             case "/" -> result = firstNumber / secondNumber;
             default -> {
-                return exception;                                    // Ловим, если не знак
+                return exception;                                    
             }
         }
-
-       // String output;                                               // Наш вывод
+        return result.toString();
     }
+}
